@@ -210,7 +210,7 @@ class BoolQGen:
 
         print("Testing to see if changes were submitted")
 
-        
+
         self.device = device
         self.model = model
         self.set_seed(42)
