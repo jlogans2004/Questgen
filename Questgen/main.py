@@ -12,7 +12,6 @@ from sense2vec import Sense2Vec
 import requests
 from collections import OrderedDict
 import string
-import pke
 import nltk
 import numpy
 from nltk import FreqDist
@@ -49,6 +48,8 @@ class QGen:
         self.device = device
         self.model = model
         self.nlp = spacy.load('en_core_web_sm')
+
+        print("Testing to see if changes were submitted")
 
         # loads sense2vec vectors from a given directory.
         self.s2v = Sense2Vec().from_disk(directory)
