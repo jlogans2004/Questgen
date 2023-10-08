@@ -201,9 +201,16 @@ class BoolQGen:
     def __init__(self):
         self.tokenizer = T5Tokenizer.from_pretrained('t5-base')
         model = T5ForConditionalGeneration.from_pretrained('ramsrigouthamg/t5_boolean_questions')
+        # increase size of model to 2000 words
+        model_config = model.config.to_dict()
+        model_config["n_positions"] = 2048
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model.to(device)
         # model.eval()
+
+        print("Testing to see if changes were submitted")
+
+        
         self.device = device
         self.model = model
         self.set_seed(42)
