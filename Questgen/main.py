@@ -37,11 +37,8 @@ class QGen:
 
     def __init__(self, directory="s2v_old"):
 
-        self.tokenizer = T5Tokenizer.from_pretrained('t5-base')
-        model = T5ForConditionalGeneration.from_pretrained('Parth/result')
-        # increase size of model to 2000 words
-        model_config = model.config.to_dict()
-        model_config["n_positions"] = 2048
+        self.tokenizer = T5Tokenizer.from_pretrained('t5-base', model_max_length=2048)
+        model = T5ForConditionalGeneration.from_pretrained('Parth/result', model_max_length=2048)
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model.to(device)
         # model.eval()
@@ -199,11 +196,9 @@ class QGen:
 class BoolQGen:
 
     def __init__(self):
-        self.tokenizer = T5Tokenizer.from_pretrained('t5-base')
-        model = T5ForConditionalGeneration.from_pretrained('ramsrigouthamg/t5_boolean_questions')
-        # increase size of model to 2000 words
-        model_config = model.config.to_dict()
-        model_config["n_positions"] = 2048
+
+        self.tokenizer = T5Tokenizer.from_pretrained('t5-base', model_max_length=2048)
+        model = T5ForConditionalGeneration.from_pretrained('ramsrigouthamg/t5_boolean_questions', model_max_length=2048)
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model.to(device)
         # model.eval()
@@ -258,8 +253,8 @@ class BoolQGen:
 class AnswerPredictor:
 
     def __init__(self):
-        self.tokenizer = T5Tokenizer.from_pretrained('t5-base')
-        model = T5ForConditionalGeneration.from_pretrained('Parth/boolean')
+        self.tokenizer = T5Tokenizer.from_pretrained('t5-base', model_max_length=2048)
+        model = T5ForConditionalGeneration.from_pretrained('Parth/boolean', model_max_length=2048)
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model.to(device)
         # model.eval()

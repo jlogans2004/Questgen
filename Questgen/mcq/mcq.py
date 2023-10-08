@@ -222,7 +222,7 @@ def generate_questions_mcq(keyword_sent_mapping,device,tokenizer,model,sense2vec
         text = context + " " + "answer: " + answer + " </s>"
         batch_text.append(text)
 
-    encoding = tokenizer.batch_encode_plus(batch_text, pad_to_max_length=True, return_tensors="pt")
+    encoding = tokenizer.batch_encode_plus(batch_text, padding="longest", return_tensors="pt")
 
 
     print ("Running model for generation")
